@@ -3,7 +3,7 @@ use ILIAS\Filesystem\Provider\FileAccess;
 use ILIAS\Filesystem\Stream\FileStream;
 
 class ilExportWithEventoIDPlugin extends ilTestExportPlugin {
-	public function getPluginName() {
+	public function getPluginName() : string {
 		return 'ExportWithEventoID';
 	}
 	/**
@@ -13,7 +13,7 @@ class ilExportWithEventoIDPlugin extends ilTestExportPlugin {
 	 *
 	 * @return string
 	 */
-	protected function getFormatIdentifier()
+	protected function getFormatIdentifier() : string
 	{
 		return 'eid';
 	}
@@ -22,7 +22,7 @@ class ilExportWithEventoIDPlugin extends ilTestExportPlugin {
 	 * This method should return a human readable label for your export. The string could be a translated language variable.
 	 * @return string
 	 */
-	public function getFormatLabel()
+	public function getFormatLabel() : string
 	{
 		return $this->txt('label');
 	}
