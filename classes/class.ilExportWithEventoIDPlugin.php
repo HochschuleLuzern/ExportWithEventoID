@@ -212,7 +212,9 @@ class ilExportWithEventoIDPlugin extends ilTestExportPlugin {
 						foreach($questions as $question)
 						{
 							$question_data = $data->getParticipant($active_id)->getPass($pass)->getAnsweredQuestionByQuestionId($question["id"]);
-							$worksheet->setCell($row, $col, $question_data["reached"]);
+                            if ($question_data && $question_data["reached"]) {
+                                $worksheet->setCell($row, $col, $question_data["reached"]);
+                            }
 							if($this->test_obj->isRandomTest())
 							{
 								// random test requires question headers for every participant
