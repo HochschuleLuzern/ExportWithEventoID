@@ -33,7 +33,7 @@ class ilExportWithEventoIDPlugin extends ilTestExportPlugin {
 	 * @throws ilException
 	 * @param string $export_path The path to store the export file
 	 */
-	protected function buildExportFile(ilTestExportFilename $export_path)
+	protected function buildExportFile(ilTestExportFilename $export_path): void
 	{
 		global $DIC;
 		$this->test_obj = $this->getTest();
