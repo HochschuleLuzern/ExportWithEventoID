@@ -60,12 +60,14 @@ class ilExportWithEventoIDPlugin extends ilTestExportPlugin {
 		$worksheet->setFormattedExcelTitle($worksheet->getColumnCoord($col++) . $row, $this->lng->txt('tst_stat_result_resultspoints'));
 		$worksheet->setFormattedExcelTitle($worksheet->getColumnCoord($col++) . $row, $this->lng->txt('maximum_points'));
 		$worksheet->setFormattedExcelTitle($worksheet->getColumnCoord($col++) . $row, $this->lng->txt('tst_stat_result_resultsmarks'));
-		
+
+        /*
+        ECTS support dropped by ILIAS
 		if($this->test_obj->getECTSOutput())
 		{
 			$worksheet->setFormattedExcelTitle($worksheet->getColumnCoord($col++) . $row, $this->lng->txt('ects_grade'));
 		}
-		
+		*/
 		$worksheet->setFormattedExcelTitle($worksheet->getColumnCoord($col++) . $row, $this->lng->txt('tst_stat_result_qworkedthrough'));
 		$worksheet->setFormattedExcelTitle($worksheet->getColumnCoord($col++) . $row, $this->lng->txt('tst_stat_result_qmax'));
 		$worksheet->setFormattedExcelTitle($worksheet->getColumnCoord($col++) . $row, $this->lng->txt('tst_stat_result_pworkedthrough'));
@@ -114,10 +116,13 @@ class ilExportWithEventoIDPlugin extends ilTestExportPlugin {
 			$worksheet->setCell($row, $col++, $data->getParticipant($active_id)->getMaxpoints());
 			$worksheet->setCell($row, $col++, $data->getParticipant($active_id)->getMark());
 			
-			if($this->test_obj->getECTSOutput())
+            /*
+            ECTS support dropped by ILIAS
+        	if($this->test_obj->getECTSOutput())
 			{
 				$worksheet->setCell($row, $col++, $data->getParticipant($active_id)->getECTSMark());
 			}
+            */
 			
 			$worksheet->setCell($row, $col++, $data->getParticipant($active_id)->getQuestionsWorkedThrough());
 			$worksheet->setCell($row, $col++, $data->getParticipant($active_id)->getNumberOfQuestions());
@@ -142,7 +147,8 @@ class ilExportWithEventoIDPlugin extends ilTestExportPlugin {
 			
 			$median = $data->getStatistics()->getStatistics()->median();
 			$pct = $data->getParticipant($active_id)->getMaxpoints() ? $median / $data->getParticipant($active_id)->getMaxpoints() * 100.0 : 0;
-			$mark = $this->test_obj->mark_schema->getMatchingMark($pct);
+
+            $mark = $this->test_obj->getMarkSchema()->getMatchingMark($pct);
 			$mark_short_name = "";
 			
 			if(is_object($mark))
