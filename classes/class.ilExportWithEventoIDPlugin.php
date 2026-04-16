@@ -1,6 +1,8 @@
 <?php
+
 use ILIAS\Filesystem\Provider\FileAccess;
 use ILIAS\Filesystem\Stream\FileStream;
+use ILIAS\Test\ExportImport\ExportFilename;
 
 class ilExportWithEventoIDPlugin extends ilTestExportPlugin {
 	public function getPluginName() : string {
@@ -33,7 +35,7 @@ class ilExportWithEventoIDPlugin extends ilTestExportPlugin {
 	 * @throws ilException
 	 * @param string $export_path The path to store the export file
 	 */
-	protected function buildExportFile(ilTestExportFilename $export_path): void
+	protected function buildExportFile(ExportFilename $export_path): void
 	{
 		global $DIC;
 		$this->test_obj = $this->getTest();
